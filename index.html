@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>LeadFerry - My exports</title>
+    <script type="module" crossorigin src="./assets/index-Bf8HFx7f.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CNl0vLzs.css">
+  </head>
+  <body>
+    <header class="top">
+      <h1>LeadFerry</h1>
+      <div id="account" hidden>
+        <span id="account-email" class="muted"></span>
+        <button id="sign-out" class="plain">Sign out</button>
+      </div>
+    </header>
+
+    <main>
+      <p id="notice" class="notice" role="status"></p>
+      <p id="error" class="error" role="alert"></p>
+
+      <section id="auth" hidden>
+        <h2>Sign in</h2>
+        <p class="muted">Use the same email and password as in the LeadFerry extension.</p>
+        <form id="auth-form">
+          <label>Email <input id="email" type="email" autocomplete="username" required /></label>
+          <label
+            >Password
+            <input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              minlength="8"
+              required
+          /></label>
+          <div class="row">
+            <button type="submit">Sign in</button>
+            <button type="button" id="sign-up" class="plain">Create account</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="exports" hidden>
+        <div class="row spread">
+          <h2>My exports</h2>
+          <button id="refresh" class="plain">Refresh</button>
+        </div>
+        <p id="empty" class="muted" hidden>
+          No exports yet. Run one from the LeadFerry extension on an Apollo people search while
+          signed in.
+        </p>
+        <div id="list" class="grid"></div>
+
+        <details class="danger">
+          <summary>Delete my account</summary>
+          <p>This removes your account and every export and lead stored with it. It cannot be undone.</p>
+          <button id="delete-account" class="plain">Delete my account and data</button>
+        </details>
+      </section>
+    </main>
+
+    <footer class="muted">Not affiliated with Apollo.io.</footer>
+  </body>
+</html>
