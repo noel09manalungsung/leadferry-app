@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>LeadFerry - My exports</title>
-    <script type="module" crossorigin src="./assets/index-Bf8HFx7f.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CNl0vLzs.css">
+    <script type="module" crossorigin src="./assets/index-Cz7Rny9X.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CsEcgrP_.css">
   </head>
   <body>
     <header class="top">
       <h1>LeadFerry</h1>
-      <div id="account" hidden>
+      <div id="account" class="row" hidden>
         <span id="account-email" class="muted"></span>
         <button id="sign-out" class="plain">Sign out</button>
       </div>
@@ -22,31 +22,104 @@
       <p id="error" class="error" role="alert"></p>
 
       <section id="auth" hidden>
-        <h2>Sign in</h2>
-        <p class="muted">Use the same email and password as in the LeadFerry extension.</p>
-        <form id="auth-form">
-          <label>Email <input id="email" type="email" autocomplete="username" required /></label>
+        <div class="tabs" role="tablist">
+          <button type="button" id="tab-sign-in" class="tab" role="tab">Sign in</button>
+          <button type="button" id="tab-sign-up" class="tab" role="tab">Create account</button>
+        </div>
+
+        <form id="sign-in-form" class="panel" method="post" action="#" novalidate>
+          <h2>Sign in</h2>
+          <label
+            >Email
+            <input id="sign-in-email" name="email" type="email" autocomplete="username" required
+          /></label>
           <label
             >Password
             <input
-              id="password"
+              id="sign-in-password"
+              name="password"
               type="password"
               autocomplete="current-password"
-              minlength="8"
               required
           /></label>
           <div class="row">
             <button type="submit">Sign in</button>
-            <button type="button" id="sign-up" class="plain">Create account</button>
+            <button type="button" id="show-reset" class="link">Forgot password?</button>
+          </div>
+        </form>
+
+        <form id="sign-up-form" class="panel" method="post" action="#" novalidate hidden>
+          <h2>Create an account</h2>
+          <p class="muted">We will email you a link to confirm your address.</p>
+          <label
+            >Email
+            <input id="sign-up-email" name="email" type="email" autocomplete="username" required
+          /></label>
+          <label
+            >Password (8 or more characters)
+            <input
+              id="sign-up-password"
+              name="new-password"
+              type="password"
+              autocomplete="new-password"
+              minlength="8"
+              required
+          /></label>
+          <button type="submit">Create account</button>
+        </form>
+
+        <form id="reset-form" class="panel" method="post" action="#" novalidate hidden>
+          <h2>Reset your password</h2>
+          <p class="muted">We will email you a link to choose a new password.</p>
+          <label
+            >Email
+            <input id="reset-email" name="email" type="email" autocomplete="username" required
+          /></label>
+          <div class="row">
+            <button type="submit">Send reset link</button>
+            <button type="button" id="back-to-sign-in" class="link">Back to sign in</button>
           </div>
         </form>
       </section>
+
+      <form id="new-password-form" class="panel" method="post" action="#" novalidate hidden>
+        <h2>Choose a new password</h2>
+        <input id="new-password-user" name="email" type="email" autocomplete="username" hidden />
+        <label
+          >New password (8 or more characters)
+          <input
+            id="new-password"
+            name="new-password"
+            type="password"
+            autocomplete="new-password"
+            minlength="8"
+            required
+        /></label>
+        <button type="submit">Save new password</button>
+      </form>
+
+      <form id="connect-form" class="panel callout" method="post" action="#" novalidate hidden>
+        <h2>Connect the LeadFerry extension</h2>
+        <p id="connect-reason" class="muted"></p>
+        <input id="connect-user" name="email" type="email" autocomplete="username" hidden />
+        <label
+          >Password
+          <input
+            id="connect-password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+        /></label>
+        <button type="submit">Connect extension</button>
+      </form>
 
       <section id="exports" hidden>
         <div class="row spread">
           <h2>My exports</h2>
           <button id="refresh" class="plain">Refresh</button>
         </div>
+        <p id="extension-status" class="muted"></p>
         <p id="empty" class="muted" hidden>
           No exports yet. Run one from the LeadFerry extension on an Apollo people search while
           signed in.
