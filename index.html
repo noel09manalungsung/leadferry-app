@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>LeadFerry</title>
-    <script type="module" crossorigin src="./assets/index-BdTySmsh.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CMCRUBto.css">
+    <script type="module" crossorigin src="./assets/index-DDus_j1J.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C-955agk.css">
   </head>
   <body>
     <div class="messages">
@@ -173,7 +173,7 @@
           <div class="row-between wrap">
             <div>
               <h1>Exports</h1>
-              <p class="muted">Every export from the extension, ready to download at any time.</p>
+              <p class="muted">Every export from the extension. Click a large export to see its batches.</p>
             </div>
             <div class="row">
               <label class="inline muted">File type
@@ -199,50 +199,6 @@
               <tbody id="list"></tbody>
             </table>
           </div>
-        </section>
-
-        <section id="view-detail" class="stack" hidden>
-          <nav aria-label="Breadcrumb" class="muted"><a href="#/exports">Exports</a> / <span id="detail-crumb"></span></nav>
-          <div class="row-between wrap">
-            <div class="stack tight">
-              <div class="row">
-                <h1 id="detail-name"></h1>
-                <span class="chip" id="detail-chip"></span>
-              </div>
-              <p class="muted" id="detail-meta"></p>
-            </div>
-            <div class="row">
-              <label class="inline muted">File type
-                <select id="detail-file-type">
-                  <option value="csv">CSV</option>
-                  <option value="xlsx">Excel</option>
-                  <option value="json">JSON</option>
-                </select>
-              </label>
-              <button id="detail-download" class="button primary">Download all</button>
-            </div>
-          </div>
-          <p id="detail-message" class="muted"></p>
-          <div class="stats" id="detail-stats"></div>
-          <section class="panel flush" id="detail-batches" hidden>
-            <div class="panel-head">
-              <h2>Batches</h2>
-              <p class="muted">Each batch is under Apollo's 2,500 limit. Open one in Apollo to check it, or download it again on its own, for example if it did not finish.</p>
-            </div>
-            <div class="table-box plain">
-              <table>
-                <thead>
-                  <tr><th>Batch</th><th>Company size</th><th>Leads</th><th>Status</th><th class="right">Actions</th></tr>
-                </thead>
-                <tbody id="batch-rows"></tbody>
-              </table>
-            </div>
-          </section>
-          <details class="panel danger">
-            <summary>Delete this export</summary>
-            <p class="muted">Removes its leads from your account. Files you already downloaded are not affected.</p>
-            <button id="detail-delete" class="button danger">Delete export</button>
-          </details>
         </section>
 
         <section id="view-account" class="stack" hidden>
