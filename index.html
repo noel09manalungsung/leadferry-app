@@ -4,137 +4,264 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>LeadFerry - My exports</title>
-    <script type="module" crossorigin src="./assets/index-C8NZplrY.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-C0uILSng.css">
+    <title>LeadFerry</title>
+    <script type="module" crossorigin src="./assets/index-BxibZl7w.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CMCRUBto.css">
   </head>
   <body>
-    <header class="top">
-      <h1>LeadFerry</h1>
-      <div id="account" class="row" hidden>
-        <span id="account-email" class="muted"></span>
-        <button id="sign-out" class="plain">Sign out</button>
-      </div>
-    </header>
-
-    <main>
+    <div class="messages">
       <p id="notice" class="notice" role="status"></p>
       <p id="error" class="error" role="alert"></p>
+    </div>
 
-      <section id="auth" hidden>
+    <!-- Signed out: sign in, create an account, reset a password. -->
+    <div id="auth-screen" class="center-screen" hidden>
+      <div class="auth-card">
+        <a class="brand" href="#/welcome">
+          <svg width="32" height="32" viewBox="0 0 28 28" aria-hidden="true">
+            <rect width="28" height="28" rx="7" fill="#1F5FD1"></rect>
+            <path d="M7 17h14l-2.5 4h-9z M9 15V9h6l3 6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"></path>
+          </svg>
+          LeadFerry
+        </a>
         <div class="tabs" role="tablist">
           <button type="button" id="tab-sign-in" class="tab" role="tab">Sign in</button>
           <button type="button" id="tab-sign-up" class="tab" role="tab">Create account</button>
         </div>
 
-        <form id="sign-in-form" class="panel" method="post" action="#" novalidate>
-          <h2>Sign in</h2>
-          <label
-            >Email
-            <input id="sign-in-email" name="email" type="email" autocomplete="username" required
-          /></label>
-          <label
-            >Password
-            <input
-              id="sign-in-password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required
-          /></label>
-          <div class="row">
-            <button type="submit">Sign in</button>
-            <button type="button" id="show-reset" class="link">Forgot password?</button>
-          </div>
+        <form id="sign-in-form" class="stack" method="post" action="#" novalidate>
+          <label class="field">Email
+            <input id="sign-in-email" name="email" type="email" autocomplete="username" required />
+          </label>
+          <label class="field">Password
+            <input id="sign-in-password" name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <button type="submit" class="button primary tall">Sign in</button>
+          <button type="button" id="show-reset" class="link">Forgot password?</button>
         </form>
 
-        <form id="sign-up-form" class="panel" method="post" action="#" novalidate hidden>
-          <h2>Create an account</h2>
+        <form id="sign-up-form" class="stack" method="post" action="#" novalidate hidden>
           <p class="muted">We will email you a link to confirm your address.</p>
-          <label
-            >Email
-            <input id="sign-up-email" name="email" type="email" autocomplete="username" required
-          /></label>
-          <label
-            >Password (8 or more characters)
-            <input
-              id="sign-up-password"
-              name="new-password"
-              type="password"
-              autocomplete="new-password"
-              minlength="8"
-              required
-          /></label>
-          <button type="submit">Create account</button>
+          <label class="field">Email
+            <input id="sign-up-email" name="email" type="email" autocomplete="username" required />
+          </label>
+          <label class="field">Password (8 or more characters)
+            <input id="sign-up-password" name="new-password" type="password" autocomplete="new-password" minlength="8" required />
+          </label>
+          <button type="submit" class="button primary tall">Create account</button>
         </form>
 
-        <form id="reset-form" class="panel" method="post" action="#" novalidate hidden>
-          <h2>Reset your password</h2>
+        <form id="reset-form" class="stack" method="post" action="#" novalidate hidden>
           <p class="muted">We will email you a link to choose a new password.</p>
-          <label
-            >Email
-            <input id="reset-email" name="email" type="email" autocomplete="username" required
-          /></label>
-          <div class="row">
-            <button type="submit">Send reset link</button>
-            <button type="button" id="back-to-sign-in" class="link">Back to sign in</button>
-          </div>
+          <label class="field">Email
+            <input id="reset-email" name="email" type="email" autocomplete="username" required />
+          </label>
+          <button type="submit" class="button primary tall">Send reset link</button>
+          <button type="button" id="back-to-sign-in" class="link">Back to sign in</button>
         </form>
-      </section>
+      </div>
+      <a class="muted" href="#/welcome">New to LeadFerry? See how it works</a>
+    </div>
 
-      <form id="new-password-form" class="panel" method="post" action="#" novalidate hidden>
-        <h2>Choose a new password</h2>
+    <!-- Shown after opening a password-reset link. -->
+    <div id="new-password-screen" class="center-screen" hidden>
+      <form id="new-password-form" class="auth-card stack" method="post" action="#" novalidate hidden>
+        <h1>Choose a new password</h1>
         <input id="new-password-user" name="email" type="email" autocomplete="username" hidden />
-        <label
-          >New password (8 or more characters)
-          <input
-            id="new-password"
-            name="new-password"
-            type="password"
-            autocomplete="new-password"
-            minlength="8"
-            required
-        /></label>
-        <button type="submit">Save new password</button>
+        <label class="field">New password (8 or more characters)
+          <input id="new-password" name="new-password" type="password" autocomplete="new-password" minlength="8" required />
+        </label>
+        <button type="submit" class="button primary tall">Save new password</button>
       </form>
+    </div>
 
-      <form id="connect-form" class="panel callout" method="post" action="#" novalidate hidden>
-        <h2>Connect the LeadFerry extension</h2>
-        <p id="connect-reason" class="muted"></p>
-        <input id="connect-user" name="email" type="email" autocomplete="username" hidden />
-        <label
-          >Password
-          <input
-            id="connect-password"
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            required
-        /></label>
-        <button type="submit">Connect extension</button>
-      </form>
-
-      <section id="exports" hidden>
-        <div class="row spread">
-          <h2>My exports</h2>
-          <button id="refresh" class="plain">Refresh</button>
+    <!-- First run: opened by the extension right after install. -->
+    <div id="welcome-screen" class="welcome" hidden>
+      <div class="welcome-inner">
+        <div class="row-between">
+          <span class="brand">
+            <svg width="32" height="32" viewBox="0 0 28 28" aria-hidden="true">
+              <rect width="28" height="28" rx="7" fill="#1F5FD1"></rect>
+              <path d="M7 17h14l-2.5 4h-9z M9 15V9h6l3 6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"></path>
+            </svg>
+            LeadFerry
+          </span>
+          <a href="#/exports">Skip for now</a>
         </div>
-        <p id="plan-status"></p>
-        <p id="extension-status" class="muted"></p>
-        <p id="empty" class="muted" hidden>
-          No exports yet. Run one from the LeadFerry extension on an Apollo people search while
-          signed in.
-        </p>
-        <div id="list" class="grid"></div>
+        <div>
+          <h1 class="hero">Export your Apollo searches in three steps</h1>
+          <p class="lead">LeadFerry saves the leads your Apollo search shows, including searches larger than Apollo's 2,500 limit.</p>
+        </div>
+        <ol class="steps">
+          <li class="panel">
+            <span class="step-number">1</span>
+            <h2>Pin LeadFerry</h2>
+            <p class="muted">Click the puzzle piece next to the address bar, then the pin next to LeadFerry, so it is always one click away.</p>
+          </li>
+          <li class="panel">
+            <span class="step-number">2</span>
+            <h2>Open a people search</h2>
+            <p class="muted">Set your filters in Apollo as usual. Choose Net New, Total or Saved; LeadFerry exports that table.</p>
+          </li>
+          <li class="panel">
+            <span class="step-number">3</span>
+            <h2>Press Export leads</h2>
+            <p class="muted">The button sits at the bottom right of Apollo's page. Download as CSV, Excel or JSON.</p>
+          </li>
+        </ol>
+        <div class="two-col">
+          <section class="panel stack">
+            <h2>Free, or with an account</h2>
+            <p class="muted">Free: 100 leads a day, with or without an account. An account keeps every export so you can download it any time.</p>
+            <div class="row" id="welcome-signed-out">
+              <a class="button primary" href="#/signup">Create an account</a>
+              <a class="button" href="#/signin">Sign in</a>
+            </div>
+            <div class="row" id="welcome-signed-in" hidden>
+              <a class="button primary" href="#/exports">Go to my exports</a>
+            </div>
+          </section>
+          <section class="panel stack">
+            <h2>Before you start</h2>
+            <p class="muted">LeadFerry pages through your Apollo search for you. Apollo's terms do not allow automated collection, and Apollo can block or close an account. You use LeadFerry at your own risk. Not affiliated with Apollo.io.</p>
+            <label class="check"><input type="checkbox" id="welcome-consent" /> I understand and accept this</label>
+            <p class="muted" id="welcome-consent-note"></p>
+          </section>
+        </div>
+      </div>
+    </div>
 
-        <details class="danger">
-          <summary>Delete my account</summary>
-          <p>This removes your account and every export and lead stored with it. It cannot be undone.</p>
-          <button id="delete-account" class="plain">Delete my account and data</button>
-        </details>
-      </section>
-    </main>
+    <!-- Signed in: side menu and pages. -->
+    <div id="app-screen" class="layout" hidden>
+      <aside class="side">
+        <span class="brand">
+          <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+            <rect width="28" height="28" rx="7" fill="#1F5FD1"></rect>
+            <path d="M7 17h14l-2.5 4h-9z M9 15V9h6l3 6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"></path>
+          </svg>
+          LeadFerry
+        </span>
+        <nav aria-label="Main" class="nav">
+          <a href="#/exports" id="nav-exports">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>
+            Exports</a>
+          <a href="#/account" id="nav-account">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+            Account and plan</a>
+          <a href="#/welcome" id="nav-help">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"></path></svg>
+            Help</a>
+        </nav>
+        <div class="side-account">
+          <strong id="account-email"></strong>
+          <span class="muted" id="side-plan"></span>
+        </div>
+      </aside>
 
-    <footer class="muted">Not affiliated with Apollo.io.</footer>
+      <main class="main">
+        <form id="connect-form" class="panel callout stack" method="post" action="#" novalidate hidden>
+          <h2>Connect the LeadFerry extension</h2>
+          <p id="connect-reason" class="muted"></p>
+          <input id="connect-user" name="email" type="email" autocomplete="username" hidden />
+          <label class="field">Password
+            <input id="connect-password" name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <button type="submit" class="button primary">Connect extension</button>
+        </form>
+
+        <section id="view-exports" class="stack" hidden>
+          <div class="row-between wrap">
+            <div>
+              <h1>Exports</h1>
+              <p class="muted">Every export from the extension, ready to download at any time.</p>
+            </div>
+            <div class="row">
+              <label class="inline muted">File type
+                <select id="file-type">
+                  <option value="csv">CSV</option>
+                  <option value="xlsx">Excel</option>
+                  <option value="json">JSON</option>
+                </select>
+              </label>
+              <button id="refresh" class="button">Refresh</button>
+            </div>
+          </div>
+          <div id="empty" class="panel stack" hidden>
+            <h2>No exports yet</h2>
+            <p class="muted">Open an Apollo people search, press "Export leads" at the bottom right, and the export appears here while it runs.</p>
+            <a class="button primary fit" href="https://app.apollo.io/#/people" target="_blank" rel="noopener noreferrer">Open Apollo people search</a>
+          </div>
+          <div class="table-box" id="list-box">
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Status</th><th>Leads</th><th>Started</th><th class="right">Actions</th></tr>
+              </thead>
+              <tbody id="list"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="view-detail" class="stack" hidden>
+          <nav aria-label="Breadcrumb" class="muted"><a href="#/exports">Exports</a> / <span id="detail-crumb"></span></nav>
+          <div class="row-between wrap">
+            <div class="stack tight">
+              <div class="row">
+                <h1 id="detail-name"></h1>
+                <span class="chip" id="detail-chip"></span>
+              </div>
+              <p class="muted" id="detail-meta"></p>
+            </div>
+            <div class="row">
+              <label class="inline muted">File type
+                <select id="detail-file-type">
+                  <option value="csv">CSV</option>
+                  <option value="xlsx">Excel</option>
+                  <option value="json">JSON</option>
+                </select>
+              </label>
+              <button id="detail-download" class="button primary">Download all</button>
+            </div>
+          </div>
+          <p id="detail-message" class="muted"></p>
+          <div class="stats" id="detail-stats"></div>
+          <section class="panel flush" id="detail-batches" hidden>
+            <div class="panel-head">
+              <h2>Batches</h2>
+              <p class="muted">Each batch is under Apollo's 2,500 limit. Open one in Apollo to check it, or download it again on its own, for example if it did not finish.</p>
+            </div>
+            <div class="table-box plain">
+              <table>
+                <thead>
+                  <tr><th>Batch</th><th>Company size</th><th>Leads</th><th>Status</th><th class="right">Actions</th></tr>
+                </thead>
+                <tbody id="batch-rows"></tbody>
+              </table>
+            </div>
+          </section>
+          <details class="panel danger">
+            <summary>Delete this export</summary>
+            <p class="muted">Removes its leads from your account. Files you already downloaded are not affected.</p>
+            <button id="detail-delete" class="button danger">Delete export</button>
+          </details>
+        </section>
+
+        <section id="view-account" class="stack" hidden>
+          <h1>Account and plan</h1>
+          <div class="panel stack">
+            <div class="row-between"><span class="muted">Email</span><strong id="account-email-detail"></strong></div>
+            <div class="row-between"><span class="muted">Plan</span><span id="plan-status"></span></div>
+            <div class="row-between"><span class="muted">Extension</span><span id="extension-status"></span></div>
+            <button id="sign-out" class="button fit">Sign out</button>
+          </div>
+          <details class="panel danger">
+            <summary>Delete my account</summary>
+            <p class="muted">This removes your account and every export and lead stored with it. It cannot be undone.</p>
+            <button id="delete-account" class="button danger">Delete my account and data</button>
+          </details>
+        </section>
+
+        <footer class="muted">Not affiliated with Apollo.io.</footer>
+      </main>
+    </div>
   </body>
 </html>
