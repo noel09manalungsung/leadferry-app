@@ -7,8 +7,8 @@
     <title>LeadFerry</title>
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <script type="module" crossorigin src="./assets/index-BgSP5aGU.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Bn5tstnG.css">
+    <script type="module" crossorigin src="./assets/index-AP1auBY7.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B3hkOegV.css">
   </head>
   <body>
     <div class="messages">
@@ -232,6 +232,12 @@
               <span id="updated" class="muted updated"></span>
             </div>
           </div>
+          <!-- Offered at the moment of need: a signed-in free account with nothing left today. -->
+          <div id="upgrade-card" class="panel stack upgrade-card" hidden>
+            <h2 id="upgrade-card-title">You've used today's 100 free leads</h2>
+            <p class="muted">Pro has no daily limit, so large exports run to the end. The free allowance resets at 00:00 UTC.</p>
+            <button id="upgrade-card-button" class="button primary fit">Upgrade to Pro</button>
+          </div>
           <p id="filter-empty" class="panel muted" hidden>No exports with this status.</p>
           <div id="empty" class="panel stack" hidden>
             <h2>No exports yet</h2>
@@ -255,6 +261,37 @@
             <div class="row-between"><span class="muted">Plan</span><span id="plan-status"></span></div>
             <div class="row-between"><span class="muted">Extension</span><span id="extension-status"></span></div>
             <button id="sign-out" class="button fit">Sign out</button>
+          </div>
+          <!-- Shown only when payments are on (PADDLE in lib/config.ts); filled in by billing-view.ts. -->
+          <div id="billing" class="panel stack" hidden>
+            <h2>Plan</h2>
+            <div id="billing-free" class="stack" hidden>
+              <p><strong>LeadFerry Pro</strong></p>
+              <ul class="benefits">
+                <li>Unlimited leads, with no daily limit (Free saves 100 per UTC day)</li>
+                <li>Large exports run to the end of the search, in batches</li>
+              </ul>
+              <fieldset class="periods">
+                <legend class="muted">Billing</legend>
+                <label class="period">
+                  <input type="radio" name="pro-period" id="period-yearly" value="yearly" checked />
+                  <span><strong>Yearly</strong> <span class="badge">2 months free</span>
+                    <span class="muted" id="price-yearly"></span></span>
+                </label>
+                <label class="period">
+                  <input type="radio" name="pro-period" id="period-monthly" value="monthly" />
+                  <span><strong>Monthly</strong> <span class="muted" id="price-monthly"></span></span>
+                </label>
+              </fieldset>
+              <button id="upgrade" class="button primary fit">Upgrade to Pro</button>
+              <p class="muted">Checkout and billing by Paddle. Cancel any time from this page.</p>
+            </div>
+            <div id="billing-pro" class="stack" hidden>
+              <div class="row-between"><span class="muted">Subscription</span><span id="billing-status"></span></div>
+              <div class="row-between" id="billing-date-row"><span class="muted" id="billing-date-label">Renews on</span><span id="billing-date"></span></div>
+              <button id="manage-subscription" class="button fit">Manage subscription</button>
+            </div>
+            <p id="billing-progress" class="muted" role="status"></p>
           </div>
           <details class="panel danger">
             <summary>Delete my account</summary>
