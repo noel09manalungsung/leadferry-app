@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>LeadFerry</title>
-    <script type="module" crossorigin src="./assets/index-Cq9IyBX1.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-l_XDCBWv.css">
+    <script type="module" crossorigin src="./assets/index-BjGZ3pRC.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-GOW--8yv.css">
   </head>
   <body>
     <div class="messages">
@@ -120,9 +120,16 @@
             <span class="step-number">2</span>
             <h2>Open a people search</h2>
             <p class="muted">Set your filters in Apollo as usual. Choose Net New, Total or Saved; LeadFerry exports that table.</p>
+            <a class="button primary fit" href="https://app.apollo.io/#/people" target="_blank" rel="noopener noreferrer">Open Apollo people search</a>
           </li>
-          <li class="panel">
-            <span class="step-number">3</span>
+          <li class="panel" id="step-export">
+            <div class="step-head">
+              <span class="step-number">
+                <span id="step-export-number">3</span>
+                <svg id="step-export-tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true" hidden><path d="M5 12l5 5 9-10"></path></svg>
+              </span>
+              <span id="step-export-done" class="chip finished" hidden>Done</span>
+            </div>
             <h2>Press Export leads</h2>
             <p class="muted">The button sits at the bottom right of Apollo's page. Download as CSV, Excel or JSON.</p>
           </li>
@@ -142,6 +149,13 @@
           <section class="panel stack">
             <h2>Before you start</h2>
             <p class="muted">LeadFerry pages through your Apollo search for you. Apollo's terms do not allow automated collection, and Apollo can block or close an account. You use LeadFerry at your own risk. Not affiliated with Apollo.io.</p>
+            <h3>What LeadFerry collects</h3>
+            <ul class="collects" id="welcome-collects">
+              <li>The leads and company details Apollo's search shows you, saved in this browser.</li>
+              <li>If you sign in, those leads are uploaded to your LeadFerry account.</li>
+              <li>Your email address, for signing in.</li>
+              <li>No browsing history, and nothing from other sites.</li>
+            </ul>
             <label class="check"><input type="checkbox" id="welcome-consent" /> I understand and accept this</label>
             <p class="muted" id="welcome-consent-note"></p>
           </section>
@@ -204,9 +218,19 @@
                   <option value="json">JSON</option>
                 </select>
               </label>
+              <label class="inline muted">Status
+                <select id="status-filter">
+                  <option value="all">All</option>
+                  <option value="active">In progress</option>
+                  <option value="finished">Done</option>
+                  <option value="stopped">Stopped</option>
+                </select>
+              </label>
               <button id="refresh" class="button">Refresh</button>
+              <span id="updated" class="muted updated"></span>
             </div>
           </div>
+          <p id="filter-empty" class="panel muted" hidden>No exports with this status.</p>
           <div id="empty" class="panel stack" hidden>
             <h2>No exports yet</h2>
             <p class="muted">Open an Apollo people search, press "Export leads" at the bottom right, and the export appears here while it runs.</p>
@@ -240,5 +264,21 @@
         <footer class="muted">Not affiliated with Apollo.io.</footer>
       </main>
     </div>
+    <!-- Confirms Stop and Delete; filled in by dialog.ts. -->
+    <dialog id="confirm-dialog" class="dialog" aria-labelledby="confirm-title" aria-describedby="confirm-body">
+      <div class="stack">
+        <h2 id="confirm-title"></h2>
+        <p id="confirm-body" class="muted"></p>
+        <label class="field" id="confirm-typed-field" hidden>
+          <span id="confirm-typed-label"></span>
+          <input id="confirm-typed" type="text" autocomplete="off" spellcheck="false" />
+        </label>
+        <div class="row end">
+          <button type="button" id="confirm-keep" class="button"></button>
+          <button type="button" id="confirm-act" class="button danger"></button>
+        </div>
+      </div>
+    </dialog>
+
   </body>
 </html>
