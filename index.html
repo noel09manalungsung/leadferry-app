@@ -7,8 +7,8 @@
     <title>SpiceStack</title>
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <script type="module" crossorigin src="./assets/index-WMWArZ-u.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BkG1Y1Fs.css">
+    <script type="module" crossorigin src="./assets/index-K3vGq9Hy.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Dg7dEbdV.css">
   </head>
   <body>
     <div class="messages">
@@ -203,6 +203,7 @@
         <div class="side-account">
           <strong id="account-email"></strong>
           <span class="muted" id="side-plan"></span>
+          <button type="button" id="sign-out" class="button side-sign-out">Sign out</button>
         </div>
       </aside>
 
@@ -274,7 +275,6 @@
             <div class="row-between"><span class="muted">Email</span><strong id="account-email-detail"></strong></div>
             <div class="row-between"><span class="muted">Plan</span><span id="plan-status"></span></div>
             <div class="row-between"><span class="muted">Extension</span><span id="extension-status"></span></div>
-            <button id="sign-out" class="button fit">Sign out</button>
           </div>
           <!-- Shown only when payments are on (PADDLE in lib/config.ts); filled in by billing-view.ts. -->
           <div id="billing" class="panel stack" hidden>
@@ -307,11 +307,8 @@
             </div>
             <p id="billing-progress" class="muted" role="status"></p>
           </div>
-          <details class="panel danger">
-            <summary>Delete my account</summary>
-            <p class="muted">This removes your account and every export and lead stored with it. It cannot be undone.</p>
-            <button id="delete-account" class="button danger">Delete my account and data</button>
-          </details>
+          <!-- Kept quiet on purpose: deleting is rare and cannot be undone. The dialog asks to type DELETE. -->
+          <p class="quiet-zone"><button type="button" id="delete-account" class="link quiet">Delete account</button></p>
         </section>
 
         <footer class="muted">Not affiliated with Apollo.io. · <a href="https://labuyo.app/terms/" target="_blank" rel="noopener">Terms</a> · <a href="https://labuyo.app/privacy/" target="_blank" rel="noopener">Privacy</a> · <a href="./third-party-notices.txt" target="_blank" rel="noopener">Open-source licences</a></footer>
