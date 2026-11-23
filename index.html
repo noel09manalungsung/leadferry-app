@@ -7,7 +7,7 @@
     <title>SpiceStack</title>
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <script type="module" crossorigin src="./assets/index-K3vGq9Hy.js"></script>
+    <script type="module" crossorigin src="./assets/index-hsJgOR0t.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-Dg7dEbdV.css">
   </head>
   <body>
@@ -102,8 +102,8 @@
 
     <!-- First run: opened by the extension right after install. -->
     <div id="welcome-screen" class="welcome" hidden>
-      <div class="welcome-inner">
-        <div class="row-between">
+      <div class="welcome-inner" id="welcome-inner">
+        <div class="row-between" id="welcome-top">
           <span class="brand">
             <svg width="32" height="32" viewBox="0 0 28 28" aria-hidden="true">
 <rect width="28" height="28" rx="7" fill="#D0262D"></rect>
@@ -268,6 +268,9 @@
             </table>
           </div>
         </section>
+
+        <!-- Help: the welcome guide is moved here when signed in (placeWelcome in main.ts). -->
+        <section id="view-help" hidden></section>
 
         <section id="view-account" class="stack" hidden>
           <h1>Account and plan</h1>
