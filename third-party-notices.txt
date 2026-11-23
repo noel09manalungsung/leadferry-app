@@ -1,4 +1,4 @@
-LeadFerry includes the following open-source software. Each package is used under its own licence, reproduced below.
+SpiceStack includes the following open-source software. Each package is used under its own licence, reproduced below.
 
 @supabase/auth-js@2.119.2 (MIT)
 -------------------------------
