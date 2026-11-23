@@ -7,7 +7,7 @@
     <title>SpiceStack</title>
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <script type="module" crossorigin src="./assets/index-hsJgOR0t.js"></script>
+    <script type="module" crossorigin src="./assets/index-CjLlfTsJ.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-Dg7dEbdV.css">
   </head>
   <body>
@@ -88,16 +88,64 @@
       <p class="muted">By using SpiceStack you accept the <a href="https://labuyo.app/terms/" target="_blank" rel="noopener">Terms</a> and <a href="https://labuyo.app/privacy/" target="_blank" rel="noopener">Privacy policy</a>.</p>
     </div>
 
-    <!-- Shown after opening a password-reset link. -->
+    <!-- Shown after opening a password-reset link, and after a buyer's first sign-in link. -->
     <div id="new-password-screen" class="center-screen" hidden>
       <form id="new-password-form" class="auth-card stack" method="post" action="#" novalidate hidden>
-        <h1>Choose a new password</h1>
+        <h1 id="new-password-title">Choose a new password</h1>
+        <p id="new-password-intro" class="muted" hidden></p>
         <input id="new-password-user" name="email" type="email" autocomplete="username" hidden />
         <label class="field">New password (8 or more characters)
           <input id="new-password" name="new-password" type="password" autocomplete="new-password" minlength="8" required />
         </label>
         <button type="submit" class="button primary tall">Save new password</button>
       </form>
+    </div>
+
+    <!-- #/upgrade while signed out (the extension's Upgrade button): pay first, sign in by
+         email after. See buy.ts. -->
+    <div id="buy-screen" class="center-screen" hidden>
+      <div class="auth-card stack">
+        <span class="brand">
+          <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+<rect width="28" height="28" rx="7" fill="#D0262D"></rect>
+<path d="M14 8l8 4-8 4-8-4z" fill="#fff" stroke="#fff" stroke-linejoin="round"></path>
+<path d="M6.8 15.6L14 19.2l7.2-3.6M6.8 19.6L14 23.2l7.2-3.6" fill="none" stroke="#fff"
+  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M14 8.2c-.2-1.9.7-3.3 2.6-4" fill="none" stroke="#3FAE52" stroke-width="2"
+  stroke-linecap="round"></path>
+</svg>
+          SpiceStack
+        </span>
+        <div id="buy-form" class="stack">
+          <h1>Upgrade to SpiceStack Pro</h1>
+          <ul class="benefits">
+            <li>Unlimited leads, with no daily limit (Free saves 100 per UTC day)</li>
+            <li>Large exports run to the end of the search, in batches</li>
+            <li>Every export kept in your account, to download any time</li>
+          </ul>
+          <fieldset class="periods">
+            <legend class="muted">Billing</legend>
+            <label class="period">
+              <input type="radio" name="buy-period" id="buy-period-yearly" value="yearly" checked />
+              <span><strong>Yearly</strong> <span class="badge">2 months free</span>
+                <span class="muted" id="buy-price-yearly"></span></span>
+            </label>
+            <label class="period">
+              <input type="radio" name="buy-period" id="buy-period-monthly" value="monthly" />
+              <span><strong>Monthly</strong> <span class="muted" id="buy-price-monthly"></span></span>
+            </label>
+          </fieldset>
+          <button type="button" id="buy-checkout" class="button primary tall">Continue to checkout</button>
+          <p class="muted small-note">No account needed: after paying, we email you a link to sign in. Checkout and billing by Paddle, with a 7-day money-back guarantee.</p>
+          <p class="muted small-note">Already have an account? <a href="#/account?upgrade">Sign in first</a></p>
+        </div>
+        <div id="buy-done" class="stack" role="status" hidden>
+          <h1>You're on Pro</h1>
+          <p id="buy-done-text"></p>
+          <p class="muted">Open the link in this browser. It signs you in, asks you to choose a password, and connects the SpiceStack extension.</p>
+          <p class="muted small-note">No email after a few minutes? Check your spam folder, or write to <a href="mailto:support@labuyo.app">support@labuyo.app</a>.</p>
+        </div>
+      </div>
     </div>
 
     <!-- First run: opened by the extension right after install. -->
